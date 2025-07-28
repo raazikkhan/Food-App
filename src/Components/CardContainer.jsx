@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 function CardContainer() {
   //let [topRated, setTopRated] = React.useState([]);
 
-  let [restaurants, setRestaurants] = React.useState([]);
+  let [restaurants, setRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]); //filtering all restaurants
 
   //Fetching the live data from the swingy APi
 
@@ -17,11 +18,13 @@ function CardContainer() {
         //response object
         const jsonData = await response.json();
         //destructuring the data
-        console.log(
+
+        const resList =
           jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants
-        );
-        setRestaurants(jsonData);
+            ?.restaurants;
+
+        setRestaurants(resList);
+        setAllRestaurants(resList); // Store all restaurants for future filtering
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -29,24 +32,29 @@ function CardContainer() {
     apiData();
   }, []);
 
+  //feltering the top rated restaurants
+
+  const filterTopRated = () => {
+    const filtered = allRestaurants.filter((res) => res.info.avgRating >= 4.4);
+    console.log(filtered);
+    setRestaurants(filtered);
+  };
+
   return (
     <>
       <button
-        className="bg-green-400 p-5 m-5 rounded-md hover:bg-green-500 cursor-pointer"
-        onClick={() => {
-          const filterList = restaurants.filter((res) => res.avgRating > 4.0); // use >= 4.0 for "Top Rated"
-
-          setRestaurants(filterList); // update the state
-        }}
+        className="bg-orange-400 p-2 m-5 rounded-md hover:bg-orange-500 cursor-pointer"
+        onClick={filterTopRated}
       >
-        Top Rated Restaurant
+        Top Rated
       </button>
 
-      <div className="p-10 flex flex-wrap gap-10 ">
+      <div className="p-5 flex flex-wrap gap-10 ">
         {/* Map through the resData array and render a Card for each item */}
-        {restaurants?.map((res) => (
-          <Card key={res.info.id} data={res.info} />
-        ))}
+        {Array.isArray(restaurants) &&
+          restaurants?.map((res) => (
+            <Card key={res.info.id} resData={res.info} />
+          ))}
       </div>
     </>
   );

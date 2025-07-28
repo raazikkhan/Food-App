@@ -2,28 +2,21 @@ import React from "react";
 import { CDN_URL } from "../utils/constants";
 
 function Card(props) {
-  const {
-    cloudinaryImageId,
-    name,
-    cuisines,
-    avgRating,
-    costForTwo,
-    delivery_time_min,
-  } = props.data;
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
+    props.resData;
   return (
     <>
-      <div className="bg-[#F1F3F5]   w-90 rounded-lg hover:bg-[#ccd5de] p-2 text-wrap">
+      <div className="bg-[#fff]   w-90   text-wrap rounded-xl hover:scale-110 transition duration-300 ease-in-out">
         <img
           src={CDN_URL + cloudinaryImageId}
           alt="card-img"
-          className="p-5  h-60 bg-cover rounded-lg"
+          className="py-0 w-full h-60 rounded-xl"
         />
-        <div className="ml-7 ">
-          <h1 className="font-bold text-2xl">{name}</h1>
-          <h4>{cuisines.join(",")}</h4>
-          <h4>{avgRating}</h4>
-          <h4>₹{costForTwo} FOR TWO</h4>
-          <h4>{delivery_time_min} min</h4>
+        <div className="mt-4 ">
+          <h1 className="font-bold text-xl">{name}</h1>
+          <h4>{cuisines.join(", ")}</h4>
+          <h4>{avgRating} ⭐</h4>
+          <h4>{costForTwo}</h4>
         </div>
       </div>
     </>
