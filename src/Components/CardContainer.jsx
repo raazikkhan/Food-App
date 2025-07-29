@@ -6,7 +6,7 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 function CardContainer() {
   let [restaurants, setRestaurants] = useState([]);
   let [allRestaurants, setAllRestaurants] = useState([]); //filtering all restaurants
-  let [searchText, setSearchText] = useState(" "); //search text state
+  let [searchText, setSearchText] = useState(""); //search text state
 
   //Fetching the live data from the swingy APi
 
@@ -46,29 +46,28 @@ function CardContainer() {
   }
   return (
     <>
-      // Search bar and filter button
+      {/* Search input for filtering restaurants */}
       <input
         value={searchText}
         type="text"
-        className="p-2 ml-5  rounded-l-md outline-none"
-        placeholder="Search..."
-        onChange={(e) => {
-          setSearchText(e.target.value);
-        }}
+        className="p-2 ml-5 w-72 bg-white text-black placeholder-gray-500 rounded-l-md outline-none"
+        placeholder="Search for restaurants..."
+        onChange={(e) => setSearchText(e.target.value)}
       />
       <button
-        className="bg-[#ff5200] p-2 rounded-r-md text-white"
+        className="bg-[#ff5200] p-2 rounded-r-md text-white cursor-pointer"
         onClick={() => {
           const filteredRestaurants = allRestaurants.filter((res) =>
             res.info.name.toLowerCase().includes(searchText.toLowerCase())
           );
           setRestaurants(filteredRestaurants);
+          allRestaurants(filteredRestaurants); // Update allRestaurants with the filtered results
           setSearchText(""); // Clear the search input after searching
         }}
       >
         <SearchRoundedIcon />
       </button>
-      // Button to filter top-rated restaurants
+      {/* Filtering the top restaurant */}
       <button
         className="bg-[#ff5200] p-2 m-5 rounded-md text-white cursor-pointer"
         onClick={filterTopRated}
