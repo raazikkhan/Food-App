@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
+import Shimmer from "./shimmer";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
 function CardContainer() {
-  //let [topRated, setTopRated] = React.useState([]);
-
   let [restaurants, setRestaurants] = useState([]);
-  const [allRestaurants, setAllRestaurants] = useState([]); //filtering all restaurants
+  let [allRestaurants, setAllRestaurants] = useState([]); //filtering all restaurants
+  let [searchText, setSearchText] = useState(" "); //search text state
 
   //Fetching the live data from the swingy APi
 
@@ -32,23 +33,49 @@ function CardContainer() {
     apiData();
   }, []);
 
-  //feltering the top rated restaurants
+  //filtering the top rated restaurants
 
   const filterTopRated = () => {
-    const filtered = allRestaurants.filter((res) => res.info.avgRating >= 4.4);
-    console.log(filtered);
+    const filtered = allRestaurants.filter((res) => res.info.avgRating >= 4.5);
+    //console.log(filtered);
     setRestaurants(filtered);
   };
-
+  //Shimmer effect Conditional Rendering
+  if (restaurants.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <>
+      // Search bar and filter button
+      <input
+        value={searchText}
+        type="text"
+        className="p-2 ml-5  rounded-l-md outline-none"
+        placeholder="Search..."
+        onChange={(e) => {
+          setSearchText(e.target.value);
+        }}
+      />
       <button
-        className="bg-orange-400 p-2 m-5 rounded-md hover:bg-orange-500 cursor-pointer"
+        className="bg-[#ff5200] p-2 rounded-r-md text-white"
+        onClick={() => {
+          const filteredRestaurants = allRestaurants.filter((res) =>
+            res.info.name.toLowerCase().includes(searchText.toLowerCase())
+          );
+          setRestaurants(filteredRestaurants);
+          setSearchText(""); // Clear the search input after searching
+        }}
+      >
+        <SearchRoundedIcon />
+      </button>
+      // Button to filter top-rated restaurants
+      <button
+        className="bg-[#ff5200] p-2 m-5 rounded-md text-white cursor-pointer"
         onClick={filterTopRated}
       >
         Top Rated
       </button>
-
+      {/* Container for the restaurant cards */}
       <div className="p-5 flex flex-wrap gap-10 ">
         {/* Map through the resData array and render a Card for each item */}
         {Array.isArray(restaurants) &&
