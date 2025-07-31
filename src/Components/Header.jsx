@@ -18,19 +18,19 @@ function Header() {
         </div>
         <div className="flex">
           <ul className="flex justify-around gap-20 mr-20 text-[#000]  text-lg">
-            <a href="#">
+            <a href="">
               <li>Home</li>
             </a>
-            <a href="#">
+            <a href="">
               <li>About Us</li>
             </a>
-            <a href="#">
+            <a href="">
               <li>Contect Us</li>
             </a>
-            <a href="#">
+            <a href="">
               <li>Cart</li>
             </a>
-            <a href="#">
+            <a href="">
               <li className="!bg-[#ff5200] text-white rounded-md">
                 <Stack direction="row" spacing={2}>
                   <Button
