@@ -1,9 +1,12 @@
-import Pages from "./Components/Pages";
+import React from "react";
+import Header from "./Components/Header";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <Pages />
+      <Header />
+      <Outlet />
     </>
   );
 }
