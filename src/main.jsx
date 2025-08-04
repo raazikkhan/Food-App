@@ -7,6 +7,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import NotFoundPage from "./Components/NotFoundPage";
 import Cart from "./Components/Cart";
+import RestaurantMenu from "./Components/RestaurantMenu";
 import "./index.css";
 
 // Correct usage
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
       { path: "/cart", element: <Cart /> },
       { path: "*", element: <NotFoundPage /> },
+      { path: "/restaurant/menu/:resId", element: <RestaurantMenu /> },
     ],
     errorElement: <NotFoundPage />,
   },
