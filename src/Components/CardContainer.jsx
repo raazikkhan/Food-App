@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import Shimmer from "./shimmer";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { SWIGGY_API_URL } from "../utils/constants";
 
 function CardContainer() {
   let [restaurants, setRestaurants] = useState([]);
@@ -13,9 +14,7 @@ function CardContainer() {
   useEffect(() => {
     const apiData = async () => {
       try {
-        const response = await fetch(
-          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.56430&lng=88.36930&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
+        const response = await fetch(SWIGGY_API_URL);
         //response object
         const jsonData = await response.json();
         //destructuring the data
