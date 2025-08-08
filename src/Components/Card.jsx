@@ -2,7 +2,7 @@ import React from "react";
 import { CDN_URL } from "../utils/constants";
 
 function Card(props) {
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
+  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
     props.resData;
   return (
     <>
@@ -14,8 +14,11 @@ function Card(props) {
         />
         <div className="mt-4 ">
           <h1 className="font-bold text-xl">{name}</h1>
+          <h4>
+            ✪ {avgRating} - {sla?.slaString}
+          </h4>
           <h4>{cuisines.join(", ")}</h4>
-          <h4>{avgRating} ⭐</h4>
+
           <h4>{costForTwo}</h4>
         </div>
       </div>

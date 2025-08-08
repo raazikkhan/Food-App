@@ -3,6 +3,7 @@ import Card from "./Card";
 import Shimmer from "./shimmer";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { SWIGGY_API_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 function CardContainer() {
   let [restaurants, setRestaurants] = useState([]);
@@ -17,6 +18,8 @@ function CardContainer() {
         const response = await fetch(SWIGGY_API_URL);
         //response object
         const jsonData = await response.json();
+
+        console.log(jsonData);
         //destructuring the data
 
         const resList =
@@ -78,7 +81,9 @@ function CardContainer() {
         {/* Map through the resData array and render a Card for each item */}
         {Array.isArray(restaurants) &&
           restaurants?.map((res) => (
-            <Card key={res.info.id} resData={res.info} />
+            <Link to={"/restaurant/menu/" + res.info.id}>
+              <Card resData={res.info} />
+            </Link>
           ))}
       </div>
     </>
