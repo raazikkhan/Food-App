@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       { path: "/contact", element: <Contact /> },
       { path: "/cart", element: <Cart /> },
       { path: "*", element: <NotFoundPage /> },
-      { path: "/restaurant/:resId", element: <RestaurantMenu /> },
+      { path: "/restaurant/menu/:resId", element: <RestaurantMenu /> },
     ],
     errorElement: <NotFoundPage />,
   },
