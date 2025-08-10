@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
     <div className=" w-[50rem] m-20 ">
       <div className="text-start">
         <h1 className="font-bold text-3xl ml-4">{name}</h1>
-       
+
         <ul className="h-30  m-4 p-3 rounded-lg shadow-xl bg-white ">
           <li>
             {avgRating} ⭐️ ({totalRatingsString}) - {costForTwoMessage}
@@ -75,8 +75,8 @@ const RestaurantMenu = () => {
             ))}
           </div>
         </div>
-     </div>
-   
+      </div>
+    </div>
   );
 };
 
