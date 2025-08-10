@@ -22,16 +22,18 @@ const RestaurantMenu = () => {
   } = menuInfo?.data?.cards?.[2]?.card?.card?.info || {};
 
   const menuList =
-    menuInfo?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
+    menuInfo?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]
+      ?.card?.card.itemCards || [];
   console.log(menuList);
 
   return menuInfo === null ? (
     <Shimmer />
   ) : (
-    <div className="flex justify-center items-center w-full mt-20">
+    <div className=" w-[50rem] m-20 ">
       <div className="text-start">
         <h1 className="font-bold text-3xl ml-4">{name}</h1>
-        <ul className="h-30 w-[50rem] m-4 p-3 rounded-lg shadow-xl bg-white ">
+       
+        <ul className="h-30  m-4 p-3 rounded-lg shadow-xl bg-white ">
           <li>
             {avgRating} ⭐️ ({totalRatingsString}) - {costForTwoMessage}
           </li>
@@ -44,11 +46,37 @@ const RestaurantMenu = () => {
 
         {/* Displaying the restaurant Recommended title */}
 
-        <h1 className="  py-3 rounded-xl shadow-xl bg-white flex justify-between">
-          <p className="font-bold text-xl ml-4 ">Menu</p>
+        <h1 className="  py-3 rounded-xl shadow-xl bg-white ">
+          <p className="font-bold text-xl ml-4">Menu</p>
         </h1>
-      </div>
-    </div>
+        <div>
+          <div className="">
+            {menuList.map((item) => (
+              <div
+                key={item.card.info.id}
+                className="flex justify-between bg-white m-4 p-3 rounded-lg shadow-md items-center"
+              >
+                <div>
+                  <h1 className="font-bold text-xl">{item.card.info.name}</h1>
+                  <p>{item.card.info.description}</p>
+                  <p>₹{item.card.info.price / 100}</p>
+                  <p>{item.card.info.ratings.aggregatedRating?.rating}</p>
+                </div>
+                <img
+                  src={
+                    item.card.info.imageId
+                      ? MENU_IMAGE_URL + item.card.info.imageId
+                      : "https://via.placeholder.com/150"
+                  }
+                  alt={item.card.info.name}
+                  className="w-fit h-full  rounded-md object-cover "
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+     </div>
+   
   );
 };
 
