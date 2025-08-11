@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { SWIGGY_API_URL } from "./constants";
 const useCard = () => {
-  const [restaurant, setRestaurant] = useState([]);
-  const [allRestaurants, setAllRestaurants] = useState([]); //filtering all restaurants
-
+  const [restaurants, setRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
@@ -12,14 +11,14 @@ const useCard = () => {
     const jsonData = await response.json();
     console.log(jsonData);
     //destructing the data
-    const reslist =
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+    let reslist =
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
     //setAllRestaurants(reslist); // Store all restaurants for future filtering
-    setRestaurant(reslist);
+    setRestaurants(reslist);
     setAllRestaurants(reslist); // Store all restaurants for future filtering
   };
-  return { restaurant, allRestaurants, setRestaurant, setAllRestaurants };
+  return { restaurants, allRestaurants, setRestaurants, setAllRestaurants };
 };
 export default useCard;

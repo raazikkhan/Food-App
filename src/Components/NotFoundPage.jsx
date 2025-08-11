@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 function NotFoundPage() {
   return (
-    <div relative w-full h-screen>
+    <div className="relative w-full h-screen">
       <img
         src="/src/assets/ErrorImg.jpg"
         alt="Error Image"

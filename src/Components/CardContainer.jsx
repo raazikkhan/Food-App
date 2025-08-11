@@ -8,7 +8,7 @@ import React from "react";
 
 function CardContainer() {
   let [searchText, setSearchText] = useState(""); //search text state
-  const { restaurants, allRestaurants, setRestaurants } = useCard(); // Using the custom hook to get restaurants and allRestaurants
+  const { restaurants, allRestaurants, setRestaurants } = useCard([]); // Using the custom hook to get restaurants and allRestaurants
 
   //filtering the top rated restaurants
 
@@ -18,7 +18,10 @@ function CardContainer() {
   };
 
   //Shimmer effect Conditional Rendering
-  if (restaurants.length === 0) {
+  //if (restaurants.length === 0) {
+  // return <Shimmer />;
+  //}
+  if (!restaurants || restaurants.length === 0) {
     return <Shimmer />;
   }
 
