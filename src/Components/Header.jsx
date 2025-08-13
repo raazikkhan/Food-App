@@ -1,10 +1,10 @@
-//import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
 function Header() {
-  //const [loginBtn, setLoginBtn] = useState("Login");
+  const [loginBtn, setLoginBtn] = useState("Login");
 
   return (
     <>
@@ -36,7 +36,7 @@ function Header() {
             </li>
 
             <li className="!bg-[#ff5200] text-white rounded-md">
-              {/*<Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing={2}>
                 <Button
                   className="!rounded-md "
                   variant="contained"
@@ -50,8 +50,7 @@ function Header() {
                 >
                   {loginBtn}
                 </Button>
-              </Stack> */}
-              <Link to={"/login"}></Link>
+              </Stack>
             </li>
           </ul>
         </div>
