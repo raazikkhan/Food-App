@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import useRestaurant from "../utils/useRestaurant";
+import useRestaurant from "../Hooks/useRestaurant"; // Custom hook to fetch restaurant data
 import { MENU_IMAGE_URL } from "../utils/constants";
 
 import Shimmer from "./shimmer";

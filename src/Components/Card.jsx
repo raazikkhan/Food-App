@@ -2,8 +2,15 @@ import React from "react";
 import { CDN_URL } from "../utils/constants";
 
 function Card(props) {
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo, sla } =
-    props.resData;
+  const {
+    cloudinaryImageId,
+    name,
+    cuisines,
+    avgRating,
+    costForTwo,
+    sla,
+    locality,
+  } = props.resData;
   return (
     <>
       <div className="bg-[#fff]   w-90   text-wrap rounded-xl hover:scale-90 transition duration-400 ease-in-out">
@@ -19,7 +26,8 @@ function Card(props) {
           </h4>
           <h4>{cuisines.join(", ")}</h4>
 
-          <h4>{costForTwo}</h4>
+          <h4 className="text-[#828587]">{costForTwo}</h4>
+          <h4 className="text-[#828587]">{locality}</h4>
         </div>
       </div>
     </>
