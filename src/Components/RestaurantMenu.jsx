@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useRestaurant from "../Hooks/useRestaurant"; // Custom hook to fetch restaurant data
 import { MENU_IMAGE_URL } from "../utils/constants";
 
-import Shimmer from "./shimmer";
+import ShimmerMenu from "./ShimmerMenu";
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // Extracting the restaurant ID from the URL parameters
@@ -27,12 +27,12 @@ const RestaurantMenu = () => {
   console.log(menuList);
 
   return menuInfo === null ? (
-    <Shimmer />
+    <ShimmerMenu />
   ) : (
-    <div className="  m-20 flex flex-col justify-center items-center flex-wrap">
-      <h1 className="font-bold text-3xl ">{name}</h1>
+    <div className="p-10 w-1/2  m-auto">
+      <h1 className="font-bold text-3xl p-2">{name}</h1>
 
-      <ul className="h-30  m-4 p-3 rounded-lg shadow-xl bg-white w-full">
+      <ul className="h-30 p-3 rounded-lg shadow-xl bg-white ">
         <li>
           {avgRating} ⭐️ ({totalRatingsString}) - {costForTwoMessage}
         </li>
@@ -45,7 +45,7 @@ const RestaurantMenu = () => {
 
       {/* Displaying the restaurant Recommended title */}
 
-      <p className="font-bold text-2xl  p-4  ">Menu</p>
+      <p className="font-bold text-2xl  p-4">Menu</p>
 
       <div>
         <div className="">

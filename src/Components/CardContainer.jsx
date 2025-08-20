@@ -5,7 +5,6 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import useCard from "../Hooks/useCard";
 import { Link } from "react-router-dom";
 import React from "react";
-import Carousel from "./Carousal";
 
 function CardContainer() {
   let [searchText, setSearchText] = useState(""); //search text state
@@ -58,23 +57,19 @@ function CardContainer() {
 
       {/* Carousel for categories */}
 
-      <div className="flex justify-center flex-col item-center ml-10">
-        <Carousel />
+      {/* Shimmer effect while loading restaurants */}
 
-        {/* Shimmer effect while loading restaurants */}
-
-        {/* Container for the restaurant cards */}
-        <div className="p-5 flex flex-wrap gap-10">
-          {restaurants.length === 0 ? (
-            <p className="text-gray-500">No restaurants found.</p>
-          ) : (
-            restaurants.map((res) => (
-              <Link key={res.info.id} to={"/restaurant/menu/" + res.info.id}>
-                <Card resData={res.info} />
-              </Link>
-            ))
-          )}
-        </div>
+      {/* Container for the restaurant cards */}
+      <div className="p-5 flex flex-wrap gap-10">
+        {restaurants.length === 0 ? (
+          <p className="text-gray-500">No restaurants found.</p>
+        ) : (
+          restaurants.map((res) => (
+            <Link key={res.info.id} to={"/restaurant/menu/" + res.info.id}>
+              <Card resData={res.info} />
+            </Link>
+          ))
+        )}
       </div>
     </>
   );
