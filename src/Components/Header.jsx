@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+//import Stack from "@mui/material/Stack";
+//import Button from "@mui/material/Button";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 function Header() {
-  const [loginBtn, setLoginBtn] = useState("Login");
+  // const [loginBtn, setLoginBtn] = useState("Login");
 
   return (
     <>
@@ -36,21 +42,12 @@ function Header() {
             </li>
 
             <li className="!bg-[#ff5200] text-white rounded-md">
-              <Stack direction="row" spacing={2}>
-                <Button
-                  className="!rounded-md "
-                  variant="contained"
-                  color="white"
-                  onClick={() => {
-                    loginBtn === "login"
-                      ? setLoginBtn("Logout")
-                      : setLoginBtn("login");
-                    console.log(loginBtn);
-                  }}
-                >
-                  {loginBtn}
-                </Button>
-              </Stack>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <SignedOut>
+                <SignInButton mode="modal">Sign In</SignInButton>
+              </SignedOut>
             </li>
           </ul>
         </div>
